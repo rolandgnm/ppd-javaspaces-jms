@@ -4,12 +4,19 @@ package br.com.ppdchat.model;
  * Created by Roland on 9/28/16.
  */
 public enum Times {
-    TIMEOUT(1000),
-    EXPIRATION(1000)
-    ;
+    MESSAGE_EXPIRATION(1000 * 60 * 5),
+    ROOM_EXPIRATION(1000 * 60 * 10),
+    WAIT(300);
 
+    private final long time;
 
-    Times(int i) {
-
+    Times(long time) {
+        this.time = time;
     }
+
+    public long getTime() {
+        return time;
+    }
+
+
 }

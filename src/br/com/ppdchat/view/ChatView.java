@@ -10,6 +10,8 @@ package br.com.ppdchat.view;
  * and open the template in the editor.
  */
 
+import javax.swing.*;
+
 /**
  *
  * @author Roland
@@ -21,6 +23,12 @@ public class ChatView extends javax.swing.JFrame {
      */
     public ChatView() {
         initComponents();
+    }
+
+    public void setVisible(){
+            /* Create and display the form */
+        SwingUtilities.invokeLater(() -> setVisible(true));
+
     }
 
     /**
