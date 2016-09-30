@@ -4,31 +4,34 @@ package br.com.ppdchat.model;
  * Created by Roland on 9/28/16.
  */
 public enum Commands {
-    SYMBOL("/", null, null),
 
-    HELP("help","h","Mostra todos os comandos disponíveis."),
+    HELP("help","h","Ajuda","Mostra todos os comandos disponíveis."),
 
-    JOIN_ROOM("join", "j", "Entrar numa sala. Se não existir, nova sala será criada."),
+    JOIN_ROOM("join", "j","Entrar em Sala", "Entrar numa sala já existente. Se não existir, nova sala será criada."),
 
-    QUIT("quit", "q", "Sai da sala atual. Se não estiver em nenhuma sala sai do chat"),
+    QUIT("quit", "q", "Sair...", "Sai da sala atual. Se não estiver em nenhuma sala sai do chat"),
 
-    ROOM_LIST("roomlist", "rl", "Lista todas as salas."),
+    ROOM_LIST("roomlist", "rl","Listar Salas", "Lista todas as salas."),
 
-    USER_LIST("userlist", "ul", "Lista todos os usuários na sala atual sala."),
+    USER_LIST("userlist", "ul","Listar Usuários",  "Lista todos os usuários na sala atual sala."),
 
-    PRIVATE_MESSAGE("private", "pvt", "Mandar mensagem privada para um usuário da sala atual."),
+    PRIVATE_MESSAGE("private", "pvt","Mensagem privada", "Mandar mensagem privada para um usuário da sala."),
 
     ;
 
+    public static final String SYMBOL = "/";
+    public static final String CLIENT_PROPRERTY = "command";
 
     private final String command;
     private final String shortened;
+    private final String translation;
     private final String description;
 
 
-    Commands(String cmd, String shortened, String description) {
+    Commands(String cmd, String shortened, String translation, String description) {
         this.command= cmd;
         this.shortened = shortened;
+        this.translation = translation;
         this.description = description;
     }
 
@@ -44,4 +47,7 @@ public enum Commands {
     public String getDescription() {
         return description;
     }
+
+    public String getTranslation() {return translation; }
+
 }
