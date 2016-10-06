@@ -4,11 +4,10 @@ import br.com.ppdchat.service.JavaSpaceService;
 import br.com.ppdchat.service.JmsService;
 import br.com.ppdchat.utils.Utils;
 import br.com.ppdchat.view.ChatView;
+import br.com.ppdchat.view.NicknameDialogView;
 
-import javax.rmi.CORBA.Util;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  * Created by Roland on 9/28/16.
@@ -16,23 +15,33 @@ import java.io.IOException;
 public class ChatController {
     private JmsService jms;
     String currentRoom;
-    private ChatView view;
+    private ChatView chatView;
+    private NicknameDialogView nickChoiceView;
     private JavaSpaceService space;
 
     public ChatController() {
-        view = new ChatView(new CommandMenuListener(), new InputListener());
 
         try {
             space = new JavaSpaceService();
             jms = new JmsService();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            Utils.displayDialog(view, e.getMessage());
+            Utils.displayDialog(chatView, "Não foi possível conectar aos serviços de comunicação!");
+            System.exit(0);
         }
 
 
-        view.setVisible();
 
+        nickChoiceView = new NicknameDialogView(new NicknameDialogListener());
+        nickChoiceView.setVisible(true);
+
+
+//        startChatView();
+    }
+
+    private void startChatView() {
+        chatView = new ChatView(new CommandMenuListener(), new InputListener());
+        chatView.setVisible();
     }
 
     private class CommandMenuListener implements ActionListener {
@@ -48,10 +57,26 @@ public class ChatController {
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO Handle Actions properly
-            view.putTextToConsole(view.getInputText());
+            chatView.putTextToConsole(chatView.getInputText());
             //TODO Teste
-            view.setRoomName(view.getInputText());
-            view.clearInput();
+            chatView.setRoomName(chatView.getInputText());
+            chatView.clearInput();
+        }
+    }
+
+    private class NicknameDialogListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String nickname = nickChoiceView.getNickname();
+
+            if(space.setNickname(nickname)){
+
+            } else {
+                Utils.displayDialog(nickChoiceView, "Nickname já existe!");
+            }
+
+
+
         }
     }
 }

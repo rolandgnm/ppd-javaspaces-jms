@@ -30,4 +30,15 @@ public class JavaSpaceService {
         }
     }
 
+    public boolean setNickname(String nickname) {
+        /**
+         * Take UserList
+         */
+//        userlistEntry = takeUserList();
+        return false;
+
     }
+
+    private void takeUserList() {
+    }
+}

@@ -1,5 +1,10 @@
 package br.com.ppdchat.view;
 
+import br.com.ppdchat.controller.ChatController;
+
+import java.awt.*;
+import java.awt.event.ActionListener;
+
 /**
  * Created by Roland on 10/5/16.
  */
@@ -8,9 +13,12 @@ public class NicknameDialogView extends javax.swing.JFrame {
 
     /**
      * Creates new form NicknameDialogView
+     * @param nicknameDialogListener
      */
-    public NicknameDialogView() {
+    public NicknameDialogView(ActionListener nicknameDialogListener) {
         initComponents();
+        btnEnterChat.addActionListener(nicknameDialogListener);
+        txtNickname.addActionListener(nicknameDialogListener);
     }
 
     /**
@@ -25,6 +33,12 @@ public class NicknameDialogView extends javax.swing.JFrame {
         lbChooseNick = new javax.swing.JLabel();
         txtNickname = new javax.swing.JTextField();
         btnEnterChat = new javax.swing.JButton();
+
+        //Center in the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = getSize();
+        setLocation(new Point((screenSize.width - frameSize.width) / 2,
+                (screenSize.height - frameSize.width) / 2));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,4 +61,8 @@ public class NicknameDialogView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbChooseNick;
     private javax.swing.JTextField txtNickname;
+
+    public String getNickname() {
+        return txtNickname.getText().trim();
+    }
 }

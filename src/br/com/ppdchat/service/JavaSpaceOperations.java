@@ -1,7 +1,7 @@
 package br.com.ppdchat.service;
 
-import br.com.ppdchat.model.Message;
-import br.com.ppdchat.model.Room;
+import br.com.ppdchat.model.entries.Message;
+import br.com.ppdchat.model.entries.Room;
 
 import java.util.List;
 
