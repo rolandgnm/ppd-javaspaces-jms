@@ -1,4 +1,4 @@
-package br.com.ppdchat.model;
+package br.com.ppdchat.model.entries;
 
 import net.jini.core.entry.Entry;
 

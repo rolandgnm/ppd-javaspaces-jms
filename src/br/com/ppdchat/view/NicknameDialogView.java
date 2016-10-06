@@ -4,12 +4,12 @@ package br.com.ppdchat.view;
  * Created by Roland on 10/5/16.
  */
 
-public class NicknameDialog extends javax.swing.JFrame {
+public class NicknameDialogView extends javax.swing.JFrame {
 
     /**
-     * Creates new form NicknameDialog
+     * Creates new form NicknameDialogView
      */
-    public NicknameDialog() {
+    public NicknameDialogView() {
         initComponents();
     }
 
