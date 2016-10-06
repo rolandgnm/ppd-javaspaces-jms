@@ -89,7 +89,7 @@ public class ChatView extends javax.swing.JFrame {
 
         roomName.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         roomName.setForeground(new java.awt.Color(255, 255, 255));
-        roomName.setText("jLabel1");
+        roomName.setText("Chat");
         roomName.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 0, 2, 0));
         titlePanel.add(roomName);
 
