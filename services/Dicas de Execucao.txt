@@ -1,0 +1,11 @@
+OpenJMS
+- dentro da pasta bin
+% sh openjms.sh run (executa o middleware)
+% sh openjms.sh admin (executa appl. de administração)
+
+Apache River
+- dentro da pasta examples/space
+% sh start-services.sh (executa os serviços)
+
+
+
