@@ -4,3 +4,7 @@
 *.jar
 libs/
 *.war
+*.log
+*.lck
+*.ctrl
+*.dat
