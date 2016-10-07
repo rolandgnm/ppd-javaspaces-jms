@@ -14,4 +14,7 @@ import java.util.List;
 
 public class RoomList implements Entry {
     public List<String> names;
+
+    public RoomList() {
+    }
 }

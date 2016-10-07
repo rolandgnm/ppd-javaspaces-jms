@@ -18,4 +18,7 @@ public class Message implements Entry {
     public String sender;
     public String message;
     public Boolean privacy;
+
+    public Message() {
+    }
 }

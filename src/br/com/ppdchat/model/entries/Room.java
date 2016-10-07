@@ -16,4 +16,7 @@ public class Room implements Entry {
     public String name;
     public List<String> onlineUsers;
     public List<String> awayUsers;
+
+    public Room() {
+    }
 }
