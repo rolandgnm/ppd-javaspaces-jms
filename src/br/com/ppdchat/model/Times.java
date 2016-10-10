@@ -8,6 +8,7 @@ public enum Times {
     ROOM_EXPIRATION(1000 * 60 * 10),
     WAIT(300);
 
+    public static int TAKE_TRIES = 3;
     private final long time;
 
     Times(long time) {

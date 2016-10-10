@@ -10,7 +10,6 @@ package br.com.ppdchat.view;
  * and open the template in the editor.
  */
 
-import br.com.ppdchat.controller.ChatController;
 import br.com.ppdchat.model.Commands;
 
 import javax.swing.*;
@@ -22,13 +21,19 @@ import java.awt.event.ActionListener;
  */
 public class ChatView extends javax.swing.JFrame {
 
+    private String USERNAME;
+    private String ROOMNAME;
+    private final String NO_ROOM = "Nenhuma sala";
+
     /**
      * Creates new form ChatView
-     *
-     * @param commandMenuListener
+     *  @param commandMenuListener
      * @param inputListener
+     * @param instanceUsername
      */
-    public ChatView(ActionListener commandMenuListener, ActionListener inputListener) {
+    public ChatView(ActionListener commandMenuListener, ActionListener inputListener, String username) {
+        USERNAME = username.toString();
+        ROOMNAME = NO_ROOM;
         initComponents();
 
         addMenuListeners(commandMenuListener);
@@ -54,14 +59,10 @@ public class ChatView extends javax.swing.JFrame {
 
     }
 
-    public void setViewTitle(String title) {
-        this.setTitle(title);
-    }
-
     private void initComponents() {
 
         titlePanel = new javax.swing.JPanel();
-        roomName = new javax.swing.JLabel();
+        lbRoomName = new javax.swing.JLabel();
         consolePanel = new javax.swing.JScrollPane();
         chatConsole = new javax.swing.JTextArea();
         southPanel = new javax.swing.JPanel();
@@ -87,11 +88,11 @@ public class ChatView extends javax.swing.JFrame {
 
         titlePanel.setBackground(new java.awt.Color(41, 128, 185));
 
-        roomName.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        roomName.setForeground(new java.awt.Color(255, 255, 255));
-        roomName.setText("Chat");
-        roomName.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 0, 2, 0));
-        titlePanel.add(roomName);
+        lbRoomName.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        lbRoomName.setForeground(new java.awt.Color(255, 255, 255));
+        lbRoomName.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 0, 2, 0));
+        updateTitle();
+        titlePanel.add(lbRoomName);
 
         getContentPane().add(titlePanel, java.awt.BorderLayout.NORTH);
 
@@ -196,6 +197,10 @@ public class ChatView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    private void updateTitle() {
+        lbRoomName.setText(USERNAME + " @ " + ROOMNAME);
+    }
+
     private javax.swing.JButton btnSend;
     private javax.swing.JTextArea chatConsole;
     private javax.swing.JMenu commandMenu;
@@ -212,11 +217,11 @@ public class ChatView extends javax.swing.JFrame {
     private javax.swing.JPanel southPanel;
     private javax.swing.JTextField textInput;
     private JPanel titlePanel;
-    private JLabel roomName;
+    private JLabel lbRoomName;
 
 
     public String getInputText() {
-        return this.textInput.getText();
+        return this.textInput.getText().trim();
     }
 
     public void putTextToConsole(String newLine) {
@@ -229,8 +234,16 @@ public class ChatView extends javax.swing.JFrame {
     }
 
     public void setRoomName(String name) {
-        roomName.setText(name);
+        this.ROOMNAME = name;
+        updateTitle();
     }
+
+    public void setUsername(String username) {
+        this.USERNAME = username;
+        updateTitle();
+
+    }
+
 
     // End of variables declaration
 }

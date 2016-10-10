@@ -26,15 +26,19 @@ public class JmsService {
         try {
             context = new InitialContext(properties);
 
-        QueueConnectionFactory qfactory = (QueueConnectionFactory) context.lookup(conFac);
+            QueueConnectionFactory qfactory = (QueueConnectionFactory) context.lookup(conFac);
 
-        QueueConnection qconnection = qfactory.createQueueConnection();
-        QueueSession qsession = qconnection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+            QueueConnection qconnection = qfactory.createQueueConnection();
+            QueueSession qsession = qconnection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+
+
 
         } catch (NamingException | JMSException e) {
             e.printStackTrace();
             throw e;
         }
+
+        System.out.println("JMS > Conexao OK!");
     }
 
     //prepara

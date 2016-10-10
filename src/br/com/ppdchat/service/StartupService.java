@@ -4,6 +4,8 @@ import br.com.ppdchat.model.entries.Message;
 import br.com.ppdchat.model.entries.Room;
 import br.com.ppdchat.model.entries.RoomList;
 import br.com.ppdchat.model.entries.UserList;
+import br.com.ppdchat.utils.Utils;
+import com.sun.tools.internal.xjc.reader.Util;
 import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import net.jini.core.entry.Entry;
 import net.jini.core.entry.UnusableEntryException;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
  */
 public class StartupService {
 
-    public static final int WAIT_TIME = 3 * 1000;
+    public static final int WAIT_TIME = 1000;
     private static Lookup finder;
     private static JavaSpace space;
 
@@ -79,10 +81,10 @@ public class StartupService {
             }
             if (roomList == null) {
                 System.out
-                        .println("Nao ha tupla do tipo RoomList...");
+                        .println("\tNao ha tupla do tipo RoomList...");
                 break;
             }
-            System.out.println("Removendo RoomList!");
+            System.out.println("< Removida RoomList!");
         }
 
 
@@ -100,10 +102,10 @@ public class StartupService {
             }
             if (userList == null) {
                 System.out
-                        .println("Nao ha tupla do tipo UserList...");
+                        .println("\tNao ha tupla do tipo UserList...");
                 break;
             }
-            System.out.println("Removendo lista de usuarios!");
+            System.out.println("< Removida lista de usuarios!");
         }
 
         /**
@@ -121,10 +123,10 @@ public class StartupService {
             }
             if (room == null) {
                 System.out
-                        .println("Nao ha tupla do tipo Room...");
+                        .println("\tNao ha tupla do tipo Room...");
                 break;
             }
-            System.out.println("Removendo sala!");
+            System.out.println("< Removida sala!");
         }
 
         /**
@@ -142,10 +144,10 @@ public class StartupService {
             }
             if (message == null) {
                 System.out
-                        .println("Nao ha tupla do tipo Message...");
+                        .println("\tNao ha tupla do tipo Message...");
                 break;
             }
-            System.out.println("Removendo Message!");
+            System.out.println("< Removida Message!");
         }
 
     }
@@ -161,7 +163,9 @@ public class StartupService {
         try {
 
             space.write(roomList, null, Long.MAX_VALUE);
+            System.out.println("> Adicionada tupla RoomList ");
             space.write(userList, null, Long.MAX_VALUE);
+            System.out.println("> Adicionada tupla UserList ");
 
         } catch (TransactionException e) {
             e.printStackTrace();

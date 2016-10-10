@@ -9,16 +9,16 @@ import java.awt.event.ActionListener;
  * Created by Roland on 10/5/16.
  */
 
-public class NicknameDialogView extends javax.swing.JFrame {
+public class UsernameDialogView extends javax.swing.JFrame {
 
     /**
      * Creates new form NicknameDialogView
-     * @param nicknameDialogListener
+     * @param usernameDialogListener
      */
-    public NicknameDialogView(ActionListener nicknameDialogListener) {
+    public UsernameDialogView(ActionListener usernameDialogListener) {
         initComponents();
-        btnEnterChat.addActionListener(nicknameDialogListener);
-        txtNickname.addActionListener(nicknameDialogListener);
+        btnEnterChat.addActionListener(usernameDialogListener);
+        txtNickname.addActionListener(usernameDialogListener);
     }
 
     /**
@@ -62,7 +62,7 @@ public class NicknameDialogView extends javax.swing.JFrame {
     private javax.swing.JLabel lbChooseNick;
     private javax.swing.JTextField txtNickname;
 
-    public String getNickname() {
+    public String getUsername() {
         return txtNickname.getText().trim();
     }
 }

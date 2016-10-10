@@ -19,7 +19,7 @@ public enum Commands {
 
     ;
 
-    public static final String SYMBOL = "/";
+    public static final char SYMBOL = '/';
     public static final String CLIENT_PROPRERTY = "command";
 
     private final String command;
