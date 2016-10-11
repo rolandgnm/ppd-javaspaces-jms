@@ -6,7 +6,7 @@ package br.com.ppdchat.model;
 public enum Times {
     MESSAGE_EXPIRATION(1000 * 60 * 5),
     ROOM_EXPIRATION(1000 * 60 * 10),
-    WAIT(300);
+    WAIT(150);
 
     public static int TAKE_TRIES = 3;
     private final long time;

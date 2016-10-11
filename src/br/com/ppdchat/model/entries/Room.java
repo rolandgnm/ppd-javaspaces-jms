@@ -19,4 +19,8 @@ public class Room implements Entry {
 
     public Room() {
     }
+
+    public Room(String name){
+        this.name = name;
+    }
 }

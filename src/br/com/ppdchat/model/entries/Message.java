@@ -2,6 +2,7 @@ package br.com.ppdchat.model.entries;
 
 import net.jini.core.entry.Entry;
 
+import java.rmi.MarshalException;
 import java.util.List;
 
 /**
@@ -20,5 +21,13 @@ public class Message implements Entry {
     public Boolean privacy;
 
     public Message() {
+    }
+
+    public Message(String room, String receiver, String sender, String message, Boolean privacy) {
+        this.room = room;
+        this.receiver = receiver;
+        this.sender = sender;
+        this.message = message;
+        this.privacy = privacy;
     }
 }

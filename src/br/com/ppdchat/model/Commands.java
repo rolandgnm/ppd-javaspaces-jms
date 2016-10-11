@@ -46,7 +46,7 @@ public enum Commands {
     }
 
     public String getDescription() {
-        return SYMBOL + command +" (" + shortened + "): \t" + description;
+        return SYMBOL + command +" (" + shortened + "):    " + description;
     }
 
     public String getTranslation() {

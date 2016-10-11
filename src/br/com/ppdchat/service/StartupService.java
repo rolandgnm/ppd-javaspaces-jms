@@ -84,7 +84,7 @@ public class StartupService {
                         .println("\tNao ha tupla do tipo RoomList...");
                 break;
             }
-            System.out.println("< Removida RoomList!");
+            System.out.println("<- Removida RoomList!");
         }
 
 
@@ -105,7 +105,7 @@ public class StartupService {
                         .println("\tNao ha tupla do tipo UserList...");
                 break;
             }
-            System.out.println("< Removida lista de usuarios!");
+            System.out.println("<- Removida lista de usuarios!");
         }
 
         /**
@@ -126,7 +126,7 @@ public class StartupService {
                         .println("\tNao ha tupla do tipo Room...");
                 break;
             }
-            System.out.println("< Removida sala!");
+            System.out.println("<- Removida sala!");
         }
 
         /**
@@ -147,25 +147,25 @@ public class StartupService {
                         .println("\tNao ha tupla do tipo Message...");
                 break;
             }
-            System.out.println("< Removida Message!");
+            System.out.println("<- Removida Message!");
         }
 
     }
 
     private static void initializeSpace() {
         RoomList roomList = new RoomList();
-        roomList.names = new ArrayList<>();
+        roomList.names = new ArrayList<String>(){};
 
         UserList userList = new UserList();
-        userList.names = new ArrayList<>();
+        userList.names = new ArrayList<String>(){};
 
 
         try {
 
             space.write(roomList, null, Long.MAX_VALUE);
-            System.out.println("> Adicionada tupla RoomList ");
+            System.out.println("-> Adicionada tupla RoomList ");
             space.write(userList, null, Long.MAX_VALUE);
-            System.out.println("> Adicionada tupla UserList ");
+            System.out.println("-> Adicionada tupla UserList ");
 
         } catch (TransactionException e) {
             e.printStackTrace();

@@ -15,6 +15,8 @@ import br.com.ppdchat.model.Commands;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
 
 /**
  * @author Roland
@@ -243,6 +245,78 @@ public class ChatView extends javax.swing.JFrame {
         this.USERNAME = username;
         updateTitle();
 
+    }
+
+    public void putMessage(String sender, String message, Boolean privacy) {
+        putTextToConsole("@" + sender +
+                (privacy ? "(privado)" : "")
+                + ": " + message);
+    }
+
+    public void putUserListToConsole(String roomName, List<String> onlineUsers, List<String> awayUsers) {
+        int size, i;
+        String output = "";
+        output = output.concat("> " +
+                "Presentes na sala " + roomName + ": \n");
+
+        if (onlineUsers.size() > 1) {
+            output = output.concat("\tOnline:\n");
+            size = onlineUsers.size();
+            i = 0;
+            for (String uname : onlineUsers) {
+                output = output.concat(uname +
+                        (i != (size - 1) ? ", " : ".\n"));
+                i++;
+            }
+        } else {
+            output = output.concat("Voce esta sozinho na sala!\n");
+        }
+
+        if (awayUsers.size() > 0) {
+            output = output.concat("\tAusentes:\n");
+            size = onlineUsers.size();
+            i = 0;
+
+            for (String uname : onlineUsers) {
+                output = output.concat(uname +
+                        (i != (size - 1) ? ", " : ".\n"));
+                i++;
+            }
+        }
+
+
+        putTextToConsole(output);
+
+    }
+
+
+    //TODO COMPLETAR PRINT LISTA DE ROOM
+    public void putRoomListToConsole(List<String> roomNames) {
+        int size = roomNames.size(),
+            i=0;
+        String output;
+
+        if (!roomNames.isEmpty()) {
+            output = "";
+            output = output.concat("> " +
+                    "Lista de salas: \n    ");
+
+            for (String rname : roomNames) {
+                output = output.concat(rname +
+                        (i != (size - 1) ? ", " : "\n"));
+                i++;
+            }
+
+        } else {
+            output = "> Nenhuma sala criada ate o momento! Crie uma!";
+
+        }
+
+        putTextToConsole(output);
+    }
+
+    public void clearConsole() {
+        chatConsole.setText("");
     }
 
 
