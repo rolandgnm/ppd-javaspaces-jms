@@ -45,6 +45,7 @@ public class ChatController {
     private void startChatView(String name) {
         chatView = new ChatView(new CommandMenuListener(), new InputListener(), name);
         chatView.setVisible();
+        usernameView.setVisible(false);
     }
 
     private class CommandMenuListener implements ActionListener {
@@ -61,16 +62,79 @@ public class ChatController {
         public void actionPerformed(ActionEvent e) {
             String input = chatView.getInputText();
 
-            if(input.isEmpty())
+            if (input.isEmpty())
                 return;
 
-            if(input.charAt(0) == Commands.SYMBOL)
-//todo handle commad
-            chatView.putTextToConsole(input);
+            if (input.charAt(0) == Commands.SYMBOL) {
+                handleCommand(input);
+            } else {
+//                handleMessage(input);
+            }
+
             //TODO Teste
-            chatView.setRoomName(input);
-            chatView.clearInput();
+//            chatView.putTextToConsole(input);
+//            chatView.setRoomName(input);
+//            chatView.clearInput();
         }
+    }
+
+    private void handleCommand(String input) {
+        String[] split = input.split(" ");
+        String inCommand = split[0];
+        Commands comm = null;
+
+        try {
+            comm = Commands.fromString(inCommand);
+        } catch (Exception e) {
+            Utils.displayDialog(chatView, e.getMessage());
+            return;
+        }
+
+        switch (comm) {
+            case HELP:
+                printHelp();
+                break;
+            case JOIN_ROOM:
+//                joinRoom(split[1]);
+                break;
+            case QUIT_ROOM:
+//                quitRoom();
+                break;
+            case ROOM_LIST:
+//                printRoomList();
+                break;
+            case USER_IN_ROOM:
+//                printUserList();
+                break;
+            case PRIVATE_MESSAGE:
+//                sendPrivateMessage();
+        }
+
+//        switch(command){
+//            case Commands.HELP:
+//        }
+
+
+//        System.out.println(input);
+    }
+
+    private void printHelp() {
+        String output = "> ";
+
+        output = output.concat("PPDChat: \n\n");
+
+        for (Commands comm : Commands.values()) {
+            output = output.concat(comm.getDescription() + "\n");
+        }
+
+        output = output.concat("Ex: \n" +
+            "/join ifce_ppd\n" +
+            "entrar para sala 'ifce_ppd.'\n\n");
+
+        chatView.putTextToConsole(output);
+
+
+
     }
 
     private class UsernameDialogListener implements ActionListener {

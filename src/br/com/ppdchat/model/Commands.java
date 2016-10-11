@@ -1,23 +1,23 @@
 package br.com.ppdchat.model;
 
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 /**
  * Created by Roland on 9/28/16.
  */
 public enum Commands {
 
-    HELP("help","h","Ajuda","Mostra todos os comandos disponíveis."),
+    HELP("help", "h", "Ajuda", "Mostra todos os comandos disponíveis."),
 
-    JOIN_ROOM("join", "j","Entrar em Sala", "Entrar numa sala já existente. Se não existir, nova sala será criada."),
+    JOIN_ROOM("join", "j", "Entrar em Sala", "Entrar numa sala já existente. Se não existir, nova sala será criada."),
 
-    QUIT("quit", "q", "Sair...", "Sai da sala atual. Se não estiver em nenhuma sala sai do chat"),
+    QUIT_ROOM("quit", "q", "Sair...", "Sai da sala atual."),
 
-    ROOM_LIST("roomlist", "rl","Listar Salas", "Lista todas as salas."),
+    ROOM_LIST("roomlist", "rl", "Listar Salas", "Lista todas as salas."),
 
-    USER_LIST("userlist", "ul","Listar Usuários",  "Lista todos os usuários na sala atual sala."),
+    USER_IN_ROOM("userlist", "ul", "Listar Usuários", "Lista todos os usuários na sala atual sala."),
 
-    PRIVATE_MESSAGE("private", "pvt","Mensagem privada", "Mandar mensagem privada para um usuário da sala."),
-
-    ;
+    PRIVATE_MESSAGE("private", "pvt", "Mensagem privada", "Mandar mensagem privada para um usuário da sala."),;
 
     public static final char SYMBOL = '/';
     public static final String CLIENT_PROPRERTY = "command";
@@ -29,7 +29,7 @@ public enum Commands {
 
 
     Commands(String cmd, String shortened, String translation, String description) {
-        this.command= cmd;
+        this.command = cmd;
         this.shortened = shortened;
         this.translation = translation;
         this.description = description;
@@ -37,17 +37,34 @@ public enum Commands {
 
     @Override
     public String toString() {
-        return  command;
+//        return command;
+        return String.valueOf(SYMBOL) + command;
     }
 
     public String getShortened() {
-        return shortened;
+        return String.valueOf(SYMBOL) + shortened;
     }
 
     public String getDescription() {
-        return description;
+        return SYMBOL + command +" (" + shortened + "): \t" + description;
     }
 
-    public String getTranslation() {return translation; }
+    public String getTranslation() {
+        return translation;
+    }
+
+    public static Commands fromString(String text) throws Exception {
+        if (text != null) {
+            for (Commands c : Commands.values()) {
+                if (text.equalsIgnoreCase(c.toString()) ||
+                        text.equalsIgnoreCase(c.getShortened())) {
+                    return c;
+                }
+            }
+        } else {
+            throw new Exception("Comando null!");
+        }
+        throw new Exception("Comando " + text + " não existe!");
+    }
 
 }

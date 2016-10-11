@@ -27,9 +27,10 @@ public class ChatView extends javax.swing.JFrame {
 
     /**
      * Creates new form ChatView
-     *  @param commandMenuListener
+     *
+     * @param commandMenuListener
      * @param inputListener
-     * @param instanceUsername
+     * @param username
      */
     public ChatView(ActionListener commandMenuListener, ActionListener inputListener, String username) {
         USERNAME = username.toString();
@@ -128,19 +129,19 @@ public class ChatView extends javax.swing.JFrame {
          */
         commandMenu.setText("Comandos");
 
-        miHelp.setText(Commands.SYMBOL + Commands.HELP + "\t-\t" + Commands.HELP.getTranslation());
-        miRoomList.setText(Commands.SYMBOL + Commands.ROOM_LIST + "\t-\t" + Commands.ROOM_LIST.getTranslation());
-        miJoin.setText(Commands.SYMBOL + Commands.JOIN_ROOM + "\t-\t" + Commands.JOIN_ROOM.getTranslation());
-        miUserList.setText(Commands.SYMBOL + Commands.USER_LIST + "\t-\t" + Commands.USER_LIST.getTranslation());
-        miPrivate.setText(Commands.SYMBOL + Commands.PRIVATE_MESSAGE + "\t-\t" + Commands.PRIVATE_MESSAGE.getTranslation());
-        miQuit.setText(Commands.SYMBOL + Commands.QUIT + "\t-\t" + Commands.QUIT.getTranslation());
+        miHelp.setText(Commands.HELP + "\t-\t" + Commands.HELP.getTranslation());
+        miRoomList.setText(Commands.ROOM_LIST + "\t-\t" + Commands.ROOM_LIST.getTranslation());
+        miJoin.setText(Commands.JOIN_ROOM + "\t-\t" + Commands.JOIN_ROOM.getTranslation());
+        miUserList.setText(Commands.USER_IN_ROOM + "\t-\t" + Commands.USER_IN_ROOM.getTranslation());
+        miPrivate.setText(Commands.PRIVATE_MESSAGE + "\t-\t" + Commands.PRIVATE_MESSAGE.getTranslation());
+        miQuit.setText(Commands.QUIT_ROOM + "\t-\t" + Commands.QUIT_ROOM.getTranslation());
 
         miHelp.putClientProperty(Commands.CLIENT_PROPRERTY, Commands.HELP);
         miRoomList.putClientProperty(Commands.CLIENT_PROPRERTY, Commands.ROOM_LIST);
         miJoin.putClientProperty(Commands.CLIENT_PROPRERTY, Commands.JOIN_ROOM);
-        miUserList.putClientProperty(Commands.CLIENT_PROPRERTY, Commands.USER_LIST);
+        miUserList.putClientProperty(Commands.CLIENT_PROPRERTY, Commands.USER_IN_ROOM);
         miPrivate.putClientProperty(Commands.CLIENT_PROPRERTY, Commands.PRIVATE_MESSAGE);
-        miQuit.putClientProperty(Commands.CLIENT_PROPRERTY, Commands.QUIT);
+        miQuit.putClientProperty(Commands.CLIENT_PROPRERTY, Commands.QUIT_ROOM);
 
 
         //TODO COMMAND LISTENER
